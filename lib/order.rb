@@ -18,12 +18,18 @@ class Order
   end
 
   def to_s
-    total_price = @result.inject(0) do |sum, result|
+    total_price = non_empty_result.inject(0) do |sum, result|
       sum + result[:count] * result[:package][:price]
     end
     details = @result.map do |result|
-      "#{result[:count]} x #{result[:package][:quantity]} $#{result[:package][:price] }"
+      "#{result[:count]} x #{result[:package][:quantity]} $#{result[:package][:price]}"
     end
-    "$" + total_price.round(2).to_s + "\n" + details.join("\n")
+    '$' + total_price.round(2).to_s + "\n" + details.join("\n")
+  end
+
+  private
+
+  def non_empty_result
+    @result.keep_if { |r| r[:count].positive? }
   end
 end

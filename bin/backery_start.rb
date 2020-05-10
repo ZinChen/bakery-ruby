@@ -1,8 +1,8 @@
-require 'lib/backery.rb'
-require 'lib/order.rb'
-require 'lib/order_breakdown.rb'
-require 'lib/order_parser.rb'
-require 'lib/product.rb'
+require_relative '../lib/backery'
+require_relative '../lib/order'
+require_relative '../lib/order_breakdown'
+require_relative '../lib/order_parser'
+require_relative '../lib/product'
 
 vegemite_scroll = Product.new('Vegemite Scroll', 'VS5')
 blueberry_muffin = Product.new('Blueberry Muffin', 'MB11')
@@ -18,14 +18,14 @@ backery.add_package(croissant, 3, 5.95)
 backery.add_package(croissant, 5, 9.95)
 backery.add_package(croissant, 9, 16.99)
 
-order_breakdown = OrderBreackdown.new(backery)
+order_breakdown = OrderBreakdown.new(backery)
 order_parser = OrderParser.new
 
 ARGF.each_line do |line|
   begin
-    order_input = order_parser.parse(line)
-    order = order_breakdown.breakdown(order_input.code, order_input.quantity)
-    p order.to_s
+    order_parser.parse(line)
+    order = order_breakdown.breakdown(order_parser.code, order_parser.quantity)
+    puts order.to_s
   rescue StandardError => e
     p e.message
   end

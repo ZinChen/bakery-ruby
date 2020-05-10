@@ -16,10 +16,18 @@ Ruby console app + Docker
     docker login
   ```
 
-- Build image, run docker container and connect to it
+- Open shell in project folder
+
+- Build image
 
   ```sh
-    docker-compose run shell bash
+    docker-compose build
+  ```
+
+- Run docker container and connect to it
+
+  ```sh
+    docker-compose run shell sh
   ```
 
 ## Usage

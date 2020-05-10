@@ -10,9 +10,9 @@ describe Order do
       order.add_package_result({ package: package, count: 3 })
       expect(order.result.first)
         .to eq({
-          package: package,
-          count: 3
-        })
+                 package: package,
+                 count: 3
+               })
     end
   end
 
@@ -45,7 +45,7 @@ describe Order do
       expect(order.to_s).to eq(
         "$25.85\n" \
         "2 x 5 $9.95\n" \
-        "1 x 3 $5.95"
+        '1 x 3 $5.95'
       )
     end
   end

@@ -7,7 +7,7 @@ class OrderParser
   end
 
   def parse(input)
-    @code, @quantity = input.split(' ')
+    @quantity, @code = input.split(' ')
     @quantity = Integer(@quantity)
   rescue StandardError
     raise StandardError, "Invalid input: #{input}"

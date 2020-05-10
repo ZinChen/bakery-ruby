@@ -17,7 +17,7 @@ describe OrderBreakdown do
       backery.add_package(croissant, 3, 5.95)
 
       order = order_breakdown.breakdown('VS5', 10)
-      packages_count = order.result.map{ |r| r[:count] }
+      packages_count = order.result.map { |r| r[:count] }
       expect(packages_count).to eq([2, 0])
     end
 
@@ -28,7 +28,7 @@ describe OrderBreakdown do
       backery.add_package(croissant, 3, 5.95)
 
       order = order_breakdown.breakdown('MB11', 14)
-      packages_count = order.result.map{ |r| r[:count] }
+      packages_count = order.result.map { |r| r[:count] }
       expect(packages_count).to eq([1, 0, 3])
     end
 
@@ -39,25 +39,25 @@ describe OrderBreakdown do
       backery.add_package(vegemite_scroll, 3, 6.99)
 
       order = order_breakdown.breakdown('CF', 13)
-      packages_count = order.result.map{ |r| r[:count] }
+      packages_count = order.result.map { |r| r[:count] }
       expect(packages_count).to eq([0, 2, 1])
     end
 
-    it 'should return nil for non existed code' do
+    it 'should raise an error for non existed code' do
       backery.add_package(croissant, 3, 5.95)
       backery.add_package(croissant, 5, 9.95)
 
-      order = order_breakdown.breakdown('NONE', 13)
-      expect(order).to eq(nil)
+      expect { order_breakdown.breakdown('NONE', 13) }
+        .to raise_exception(StandardError)
     end
 
-    it 'should return nil for non breakable quantity' do
+    it 'should raise an error for non breakable quantity' do
       backery.add_package(croissant, 3, 5.95)
       backery.add_package(croissant, 5, 9.95)
       backery.add_package(croissant, 9, 16.99)
 
-      order = order_breakdown.breakdown('CF', 7)
-      expect(order).to eq(nil)
+      expect { order_breakdown.breakdown('CF', 7) }
+        .to raise_exception(StandardError)
     end
   end
 end

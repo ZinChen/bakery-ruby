@@ -8,11 +8,12 @@ describe Backery do
   describe '#add_package' do
     it 'should add package' do
       backery.add_package(product_cf, 5, 5.99)
-      expect(backery.packages).to include({
-        product: product_cf,
-        quantity: 5,
-        price:5.99
-      })
+      expect(backery.packages)
+        .to include({
+                      product: product_cf,
+                      quantity: 5,
+                      price: 5.99
+                    })
     end
 
     it 'should raise error on wrong product' do
@@ -29,7 +30,6 @@ describe Backery do
       expect { backery.add_package(product_cf, 5, nil) }
         .to raise_exception(StandardError)
     end
-
   end
 
   describe '#packages_by_code' do

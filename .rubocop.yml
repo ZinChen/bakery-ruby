@@ -4,11 +4,23 @@ Layout/LineLength:
 Layout/SpaceAroundMethodCallOperator:
   Enabled: true
 
+Layout/FirstHashElementIndentation:
+  Enabled: false
+
+Layout/EndOfLine:
+  EnforcedStyle: lf
+
 Lint/RaiseException:
   Enabled: true
 
 Lint/StructNewOverride:
   Enabled: true
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
