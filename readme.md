@@ -1,8 +1,8 @@
-# Backery
+# Bakery
 
 Ruby console app + Docker
 
-Algorythm solves task of breakdown needed product quantity into packs.
+Algorithm solves task of breakdown needed product quantity into packs.
 
 ## Setup
 
@@ -18,7 +18,7 @@ Algorythm solves task of breakdown needed product quantity into packs.
     docker login
   ```
 
-- Open shell with project folder
+- Open shell with the project folder
 
 - Build image
 
@@ -28,21 +28,21 @@ Algorythm solves task of breakdown needed product quantity into packs.
 
 ## Usage
 
-- Run docker container, script will run immidiatelly
+- Run docker container, script will run immediately
 
   ```sh
     docker-compose run shell
   ```
 
-- Input required quantity of product and it's code
+- Input required quantity of a product and it's code
 
   ```sh
     13 CF
   ```
 
-- If product code is correct and quantity can be splitted in packages you will see correct result
+- If the product code is correct and quantity can be split in packages you will see correct result
 
-- If input is incorrect in some way you will see error message
+- If the input is incorrect in some way you will see an error message
 
 ## Run tests
 
