@@ -1,4 +1,4 @@
-class Backery
+class Bakery
   InvalidProduct = Class.new(StandardError)
 
   attr_reader :packages

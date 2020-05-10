@@ -2,7 +2,9 @@
 
 Ruby console app + Docker
 
-## Building steps
+Algorythm solves task of breakdown needed product quantity into packs.
+
+## Setup
 
 - Install docker
   - Mac, Windows: <https://www.docker.com/products/docker-desktop>
@@ -16,7 +18,7 @@ Ruby console app + Docker
     docker login
   ```
 
-- Open shell in project folder
+- Open shell with project folder
 
 - Build image
 
@@ -24,25 +26,43 @@ Ruby console app + Docker
     docker-compose build
   ```
 
-- Run docker container and connect to it
+## Usage
+
+- Run docker container, script will run immidiatelly
+
+  ```sh
+    docker-compose run shell
+  ```
+
+- Input required quantity of product and it's code
+
+  ```sh
+    13 CF
+  ```
+
+- If product code is correct and quantity can be splitted in packages you will see correct result
+
+- If input is incorrect in some way you will see error message
+
+## Run tests
+
+  ```sh
+    docker-compose run shell rspec
+  ```
+
+## Run rubocop linter
+
+  ```sh
+    docker-compose run shell rubocop
+  ```
+
+## Open shell with runnable environment
 
   ```sh
     docker-compose run shell sh
   ```
 
-## Usage
-
-Input required number of sweeties
-
-Get result
-
-## Run tests
-
-  ```sh
-    docker run -it hotel-ruby-app rspec
-  ```
-
-## Remove created docker containers
+## Cleanup docker containers
 
   ```sh
     docker container prune

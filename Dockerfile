@@ -13,4 +13,4 @@ RUN bundle install
 
 ADD . .
 
-CMD ["ruby", "./bin/backery_start.rb"]
+CMD ["ruby", "./bin/bakery_start.rb"]
