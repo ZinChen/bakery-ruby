@@ -15,7 +15,8 @@ class OrderBreakdown
 
     raise StandardError, 'Wrong product code' if bakery_packages.empty?
 
-    breakdown_for_packages(bakery_packages, quantity) unless bakery_packages.empty?
+    # breakdown_for_packages(bakery_packages, quantity)
+    breakdown_for_packages_non_recursive(bakery_packages, quantity)
 
     raise StandardError, 'No suitable packages' unless @order.total_quantity.positive?
 
@@ -23,6 +24,49 @@ class OrderBreakdown
   end
 
   private
+
+  def breakdown_for_packages_non_recursive(bakery_packages, quantity)
+    quantity_left = quantity
+    package_level = 0
+    result = []
+
+    loop do
+      package = bakery_packages[package_level]
+      package_count = quantity_left / package[:quantity]
+      quantity_left = quantity_left % package[:quantity]
+
+      result << {
+        package: package,
+        count: package_count,
+        quantity: package[:quantity],
+        quantity_left: quantity_left
+      }
+
+      # successfuly find solution
+      break if quantity_left == 0
+
+      # didn't find solution, try another breakdown
+      if package_level == bakery_packages.count - 1
+        result.pop
+        result.pop until result.last[:count] > 0
+
+        break if result.count == 0
+
+        result.last[:count] -= 1
+        quantity_left = result.last[:quantity_left] + result.last[:quantity]
+      end
+
+      package_level = result.count
+    end
+
+    bakery_packages.reverse.each_with_index do |package, index|
+      count = result[index].nil? ? 0 : result[index][:count]
+      @order.add_package_result({
+        count: count,
+        package: package
+      })
+    end
+  end
 
   def breakdown_for_packages(bakery_packages, quantity)
     package = bakery_packages.first
